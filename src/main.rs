@@ -71,27 +71,9 @@ fn main() {
     while !rl.window_should_close() {
         music.update_stream();
 
+        process_input(&mut rl, &mut entities);
+        
         let dt = rl.get_frame_time();
-
-        let mut new_player_velocity = Vector2 { x: 0.0, y: 0.0 };
-
-        if rl.is_key_down(KeyboardKey::KEY_W) {
-            new_player_velocity.y -= 1.0;
-        }
-
-        if rl.is_key_down(KeyboardKey::KEY_S) {
-            new_player_velocity.y += 1.0;
-        }
-
-        if rl.is_key_down(KeyboardKey::KEY_A) {
-            new_player_velocity.x -= 1.0;
-        }
-
-        if rl.is_key_down(KeyboardKey::KEY_D) {
-            new_player_velocity.x += 1.0;
-        }
-
-        entities[0].set_velocity(new_player_velocity.normalized() * PLAYER_SPEED);
 
         let mut d = rl.begin_drawing(&thread);
 
@@ -106,4 +88,26 @@ fn main() {
         d.clear_background(Color::RAYWHITE);
         d.draw_fps(0, 0);
     }
+}
+
+fn process_input(rl: &mut RaylibHandle, entities: &mut Vec<Entity>) {
+    let mut new_player_velocity = Vector2 { x: 0.0, y: 0.0 };
+
+    if rl.is_key_down(KeyboardKey::KEY_W) {
+        new_player_velocity.y -= 1.0;
+    }
+
+    if rl.is_key_down(KeyboardKey::KEY_S) {
+        new_player_velocity.y += 1.0;
+    }
+
+    if rl.is_key_down(KeyboardKey::KEY_A) {
+        new_player_velocity.x -= 1.0;
+    }
+
+    if rl.is_key_down(KeyboardKey::KEY_D) {
+        new_player_velocity.x += 1.0;
+    }
+
+    entities[0].set_velocity(new_player_velocity.normalized() * PLAYER_SPEED);
 }
