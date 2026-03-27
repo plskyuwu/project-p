@@ -7,7 +7,7 @@ use std::{process, rc::Rc};
 
 use crate::{
     component::transform::Transform,
-    entity::{drawable::Drawable, entity::Entity, moveable::Moveable, player::Player, tile::Tile},
+    entity::{drawable::Drawable, Entity, moveable::Moveable, player::Player, tile::Tile},
 };
 
 const PLAYER_SPEED: f32 = 100.0;
@@ -90,7 +90,7 @@ fn main() {
     }
 }
 
-fn process_input(rl: &mut RaylibHandle, entities: &mut Vec<Entity>) {
+fn process_input(rl: &mut RaylibHandle, entities: &mut [Entity]) {
     let mut new_player_velocity = Vector2 { x: 0.0, y: 0.0 };
 
     if rl.is_key_down(KeyboardKey::KEY_W) {
