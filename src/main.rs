@@ -37,7 +37,7 @@ fn main() {
         .new_music("assets/music.ogg")
         .expect("Couln't find asset");
 
-    let textures = vec![
+    let textures = [
         Rc::new(
             rl.load_texture(&thread, "assets/player.png")
                 .expect(ERROR_ASSET_NOT_FOUND),
