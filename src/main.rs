@@ -7,7 +7,7 @@ use std::{process, rc::Rc};
 
 use crate::{
     component::transform::Transform,
-    entity::{drawable::Drawable, Entity, moveable::Moveable, player::Player, tile::Tile},
+    entity::{Entity, drawable::Drawable, moveable::Moveable, player::Player, tile::Tile},
 };
 
 const PLAYER_SPEED: f32 = 100.0;
@@ -72,7 +72,7 @@ fn main() {
         music.update_stream();
 
         process_input(&mut rl, &mut entities);
-        
+
         let dt = rl.get_frame_time();
 
         let mut d = rl.begin_drawing(&thread);
@@ -81,9 +81,6 @@ fn main() {
             entity.apply_velocity(dt);
             entity.draw(&mut d);
         }
-
-        //player.apply_velocity(dt);
-        //player.draw(&mut d);
 
         d.clear_background(Color::RAYWHITE);
         d.draw_fps(0, 0);
